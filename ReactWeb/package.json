@@ -1,7 +1,7 @@
 {
   "name": "react-hello-world",
-  "homepage": "https://hemmels.github.io/reactapp/",
-  "version": "1.0.0",
+  "homepage": "https://hemmels.github.io/reactapp/ReactWeb",
+  "version": "0.1.0",
   "description": "Test React project",
   "main": "index.js",
   "scripts": {
@@ -12,13 +12,11 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "author": "CodeMix",
-  "license": "ISC",
   "dependencies": {
     "gh-pages": "^3.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "^3.0.1"
+    "react-scripts": "latest"
   },
   "browserslist": [
     ">0.2%",
