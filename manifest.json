@@ -1,6 +1,6 @@
 {
-  "short_name": "React Hello World",
-  "name": "Create React Hello World",
+  "short_name": "Site Status Dash",
+  "name": "Site/Service Monitoring Status Dashboard",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,8 +8,8 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": "./index.html",
+  "start_url": "../pages/index.html",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#6495ed"
 }
