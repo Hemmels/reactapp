@@ -1,7 +1,7 @@
 # React application repo - this holds the production code that can be seen [running on Github Pages](http://hemmels.github.io/reactapp)
 The running code is the gh-pages branch, which we never commit to directly, it is built from the master branch and pushed/deployed with 
 
-    npm deploy.
+    npm run deploy
 
 This sends the code to be minified and sent to github pages.
 
