@@ -21,7 +21,7 @@ class Status extends Component {
 		const numPeople = this.props.people;
 		let statusBox;
 		if (numPeople > 0) {
-			statusBox = <StatusBoxGood>Service contains {this.props.people} people</StatusBoxGood>
+			statusBox = <StatusBoxGood>Service contains {numPeople} people</StatusBoxGood>
 		} else {
 			if (this.props.quality === "1") {
 				statusBox = <StatusBoxGood>10ms</StatusBoxGood>
