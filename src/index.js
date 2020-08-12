@@ -1,4 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import HomePage from './components/HomePage.js';
 
-ReactDOM.render(<p>Hello world!!!</p>, document.getElementById('root'));
+ReactDOM.render(
+	<HomePage />, 
+	document.getElementById('root')
+);
