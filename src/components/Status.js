@@ -1,24 +1,44 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, {Component} from 'react'
+import styled from 'styled-components'
 
-function Status() {
-	return (
+class Status extends Component {
+
+	constructor() {
+        super()
+        this.state = {
+			name: "",
+			status: 0,
+			people: 0
+        }
+	}
+
+	shouldComponentUpdate(nextProps) {
+		console.log(nextProps);
+		return this.props.people !== nextProps.people;
+	}
+
+	render() {
+		const numPeople = this.props.people;
+		let statusBox;
+		if (numPeople > 0) {
+			statusBox = <StatusBoxGood>Service contains {this.props.people} people</StatusBoxGood>
+		} else {
+			if (this.props.quality === "1") {
+				statusBox = <StatusBoxGood>10ms</StatusBoxGood>
+			} else {
+				statusBox = <StatusBoxBad>499ms</StatusBoxBad>
+			}
+		}
+		return (
 		<div>
 			<link href='https://fonts.googleapis.com/css?family=Mulish' rel='stylesheet' />
 			<div>
-				<Label>google.co.uk</Label>
-				<StatusBoxGood>10ms</StatusBoxGood>
-			</div>
-			<div>
-				<Label>bbc.co.uk</Label>
-				<StatusBoxGood>10ms</StatusBoxGood>
-			</div>
-			<div>
-				<Label>badservice.co.uk</Label>
-				<StatusBoxBad>499ms</StatusBoxBad>
+				<Label>{this.props.name}</Label>
+				{statusBox}
 			</div>
 		</div>
-	)
+		)
+	}
 }
 
 const StatusBoxGood = styled.div`
@@ -61,6 +81,8 @@ const Label = styled.p`
 	font-family: 'Mulish';
 	height: 2em;
 	width: 5em;
+	margin: 0em;
+	margin-top: 1em;
 `
 
 export default Status;
