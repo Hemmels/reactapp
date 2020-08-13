@@ -13,6 +13,7 @@ This was created for a technical test as part of an interview process, and is th
 
 ## What does it do?
 It shows various websites or services, pings them with a Java HTTP client and records the latency. Shows pretty colours and refreshes every 5s.
+It should look this this: ![Screenshot of local](https://imgur.com/dTCYZIs) (**See Issues below**)
 
 ## How does it do it?
 We could have used pure React, but this is now a nice "workbench" for showing Java-backend to React-frontend capabilities. We make a call every 5s to our Java app and this @RestController handles the call. We query our datasource to get a list of enabled sites, pings them, and returns the data for the frontend to render.
