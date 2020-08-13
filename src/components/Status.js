@@ -3,30 +3,21 @@ import styled from 'styled-components'
 
 class Status extends Component {
 
-	constructor() {
-        super()
-        this.state = {
-			name: "",
-			status: 0,
-			people: 0
-        }
-	}
-
 	shouldComponentUpdate(nextProps) {
-		console.log(nextProps);
-		return this.props.people !== nextProps.people;
+		return this.props.latency !== nextProps.latency;
 	}
 
 	render() {
 		const numPeople = this.props.people;
+		const latency = this.props.latency;
 		let statusBox;
 		if (numPeople > 0) {
 			statusBox = <StatusBoxGood>Service contains {numPeople} people</StatusBoxGood>
 		} else {
-			if (this.props.quality === "1") {
-				statusBox = <StatusBoxGood>10ms</StatusBoxGood>
+			if (latency < 70) {
+				statusBox = <StatusBoxGood>{latency}ms</StatusBoxGood>
 			} else {
-				statusBox = <StatusBoxBad>499ms</StatusBoxBad>
+				statusBox = <StatusBoxBad>{latency}ms</StatusBoxBad>
 			}
 		}
 		return (

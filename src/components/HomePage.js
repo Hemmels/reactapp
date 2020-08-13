@@ -1,20 +1,16 @@
-import React, {Component, useState} from 'react'
+import React, {Component} from 'react'
 import Head from 'next/head'
-import Status from './Status.js'
+import ServiceBlock from './ServiceBlock.js'
 import styled from 'styled-components'
 import logo from '../images/logo.PNG'
 
 class HomePage extends Component {
 
-	constructor() {
-        super()
-        this.state = {
-            numSWPeople: 0,
-            numGhibPeople: 0
-        }
+	state = {
+		latencyCheck: []
 	}
 	
-    callServlet() {
+    callPeopleServices() {
         fetch('https://swapi.dev/api/people/?format=json')
             .then(results => {
                 if (!results.ok) {
@@ -40,11 +36,43 @@ class HomePage extends Component {
                 this.setState({ numGhibPeople: data.length })
             }).catch(error => {
                 console.log(error)
-            });
+            })
+	}
+	
+	endpoints = () => {
+        fetch('/api/endpointNames')
+    		.then(results => {
+                if (!results.ok) {
+                	console.log("Failed getting endpoints data: " + results.statusText)
+                    throw Error(results.statusText)
+                }
+				return results.json()
+			})
+            .then(data => {
+                console.log("endpoints names fetched: " + data)
+                this.setState({endpointNames: data})
+            })
+    }
+	
+	doLatencyChecks = () => {
+        fetch('/api/latencyCheck')
+    		.then(results => {
+                if (!results.ok) {
+                	console.log("Failed getting endpoints data: " + results.statusText)
+                    throw Error(results.statusText)
+                }
+				return results.json()
+			})
+            .then(data => {
+                console.log("latencyCheck data fetched: " + JSON.stringify(data))
+                this.setState({latencyCheck: data})
+            })
     }
 
     componentDidMount() {
-		this.interval = setInterval(() => this.callServlet(), 5000)
+		this.endpoints()
+		this.doLatencyChecks();
+		this.interval = setInterval(() => this.doLatencyChecks(), 5000)
 		console.log("Page interval set to 5s")
 	}
 
@@ -53,7 +81,9 @@ class HomePage extends Component {
 		console.log("Page interval cleared")
 	}
 	
-	render() { 
+	render() {
+		var listLength = this.state != null && this.state.endpointList != null ? this.state.endpointNames.length : 0
+		var latencyCheckMap = this.state != null && this.state.latencyCheck != null ? this.state.latencyCheck : []
 		return (<div>
 			<Head>
 				<title>Service Dash</title>
@@ -62,15 +92,13 @@ class HomePage extends Component {
 			<Header>
 				<div>
 					<Logo src={logo} alt="Logo"></Logo>
-					<Title>Service Status Dash</Title>
-					<Sub>Page refreshes every 5s</Sub>
+					<div>
+						<Title>Service Status Dash</Title>
+						<Sub>Page refreshes every 5s; {listLength > 0 ? 'There are ' + listLength + ' endpoints' : ''}</Sub>
+					</div>
+					<ServiceBlock latencyMap={latencyCheckMap} />
 				</div>
 			</Header>
-			<Status name="google.co.uk" quality="1" />
-			<Status name="bbc.co.uk" quality="1" />
-			<Status name="swapi.co" quality="0" />
-			<Status name="swapi.dev" quality="1" people={this.state.numSWPeople} />
-			<Status name="ghibliapi.herokuapp.com" quality="1" people={this.state.numGhibPeople} />
 		</div>)
 	}
 }

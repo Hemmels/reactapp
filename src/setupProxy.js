@@ -1,0 +1,8 @@
+const proxyInfo = require('http-proxy-middleware')
+module.exports = function(app) {
+    // localhost doesn't work
+    app.use(proxyInfo('/api', 
+        { target: 'http://127.0.0.1:8080/',
+            changeOrigin: true }
+    ))
+}
