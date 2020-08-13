@@ -15,7 +15,6 @@ class HomePage extends Component {
             .then(results => {
                 if (!results.ok) {
                 	console.log("Failed getting swapi data: " + results.statusText)
-                    throw Error(results.statusText)
                 }
                 return results.json();
             }).then(data => {
@@ -28,7 +27,6 @@ class HomePage extends Component {
             .then(results => {
                 if (!results.ok) {
                 	console.log("Failed getting Ghibli data: " + results.statusText)
-                    throw Error(results.statusText)
                 }
                 return results.json();
             }).then(data => {
@@ -44,7 +42,6 @@ class HomePage extends Component {
     		.then(results => {
                 if (!results.ok) {
                 	console.log("Failed getting endpoints data: " + results.statusText)
-                    throw Error(results.statusText)
                 }
 				return results.json()
 			})
@@ -59,7 +56,6 @@ class HomePage extends Component {
     		.then(results => {
                 if (!results.ok) {
                 	console.log("Failed getting endpoints data: " + results.statusText)
-                    throw Error(results.statusText)
                 }
 				return results.json()
 			})
@@ -94,7 +90,7 @@ class HomePage extends Component {
 					<Logo src={logo} alt="Logo"></Logo>
 					<div>
 						<Title>Service Status Dash</Title>
-						<Sub>Page refreshes every 5s; {listLength > 0 ? 'There are ' + listLength + ' endpoints' : ''}</Sub>
+						<Sub>Page refreshes every 5s {listLength > 0 ? '; There are ' + listLength + ' endpoints' : ''}</Sub>
 					</div>
 					<ServiceBlock latencyMap={latencyCheckMap} />
 				</div>

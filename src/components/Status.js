@@ -8,17 +8,14 @@ class Status extends Component {
 	}
 
 	render() {
-		const numPeople = this.props.people;
 		const latency = this.props.latency;
 		let statusBox;
-		if (numPeople > 0) {
-			statusBox = <StatusBoxGood>Service contains {numPeople} people</StatusBoxGood>
+		if (latency < 60) {
+			statusBox = <StatusBox theme={{background: "#409920"}}>{latency}ms</StatusBox>
+		} else if (latency < 120) {
+			statusBox = <StatusBox theme={{background: "#999120"}}>{latency}ms</StatusBox>
 		} else {
-			if (latency < 70) {
-				statusBox = <StatusBoxGood>{latency}ms</StatusBoxGood>
-			} else {
-				statusBox = <StatusBoxBad>{latency}ms</StatusBoxBad>
-			}
+			statusBox = <StatusBox theme={{background: "#994020"}}>{latency}ms</StatusBox>
 		}
 		return (
 		<div>
@@ -32,34 +29,17 @@ class Status extends Component {
 	}
 }
 
-const StatusBoxGood = styled.div`
+const StatusBox = styled.div`
 	border-style: groove;
 	border-width: 2px;
 	height: 2em;
 	width: 20em;
-	background-color: #409920;
+	background-color: ${props => props.theme.background};
     vertical-align: middle;
 	text-align: center;
 	color: white;
 	font-family: 'Mulish';
 	font-weight: 100;
-	margin-left: 1em;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-`
-
-const StatusBoxBad = styled.div`
-	border-style: groove;
-	border-width: 2px;
-	height: 2em;
-	width: 20em;
-	background-color: #994020;
-    vertical-align: middle;
-	text-align: center;
-	color: white;
-	font-family: 'Mulish';
-	font-weight: 400;
 	margin-left: 1em;
 	display: flex;
 	align-items: center;
