@@ -1,4 +1,4 @@
-# React application repo - this holds the production code that can be seen [running on Github Pages](http://hemmels.github.io/reactapp)
+# React application repo - this holds the production code that can be seen [running on Github Pages](http://hemmels.github.io/reactapp) (See notes below)
 The running code is the gh-pages branch, which we never commit to directly, it is built from the master branch and pushed/deployed with 
 
     npm run deploy
@@ -21,7 +21,7 @@ It should look this this:
 We could have used pure React, but this is now a nice "workbench" for showing Java-backend to React-frontend capabilities. We make a call every 5s to our Java app and this @RestController handles the call. We query our datasource to get a list of enabled sites, pings them, and returns the data for the frontend to render. Having a backing db also means we can keep track of events such as downtimes or admin logs.
 
 ## Issues/Improvements
-**Currently doesn't show anything on Github Pages!!** while I work out how to deploy the backend too as part of 1 project. For now, as long as Springboot is running the backend, and React is also running, it'll play nice locally. (i.e. you have 2 separate projects running)
+**Currently doesn't show anything on Github Pages!!** while I find a nice way of deploying the frontend code as part of 1 "release". For now, as long as Springboot is running the backend, and the frontend React project is also running, it'll play nice locally. (i.e. you have 2 separate projects running)
 
 **Future recommendations?** To improve, we could add a form and a user login that would show "advanced features" like editing the services that are shown, or enabling/disabling or filtering. Right now, to add a service/site to be monitored, we make a simple Post request to endpoints/add with the string.
 
