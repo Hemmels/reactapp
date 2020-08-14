@@ -17,6 +17,13 @@ It should look this this:
 
 ![Screenshot of local](https://i.imgur.com/dTCYZIs.png) (**See Issues below**)
 
+## How to run it?
+Assuming you have the [Backend running](https://github.com/Hemmels/JavaPerfMon) you can just run
+
+    npm start build
+   
+And navigate to localhost:3000/reactapp to view the project.
+
 ## How does it do it?
 We could have used pure React, but this is now a nice "workbench" for showing Java-backend to React-frontend capabilities. We make a call every 5s to our Java app and this @RestController handles the call. We query our datasource to get a list of enabled sites, pings them, and returns the data for the frontend to render. Having a backing db also means we can keep track of events such as downtimes or admin logs.
 
