@@ -4,26 +4,29 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
+    "@testing-library/jest-dom": "^5.11.3",
+    "@testing-library/react": "^10.4.8",
+    "@testing-library/user-event": "^12.1.1",
     "bootstrap": "^4.5.2",
+    "copyfiles": "^2.3.0",
+    "http-proxy-middleware": "^1.0.5",
     "jquery": "^3.5.1",
     "next": "latest",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.2",
+    "react-scripts": "^3.4.3",
     "reactstrap": "^8.5.1",
     "styled-components": "latest",
     "styled-jsx": "^3.3.0",
     "typescript": "^3.9.7",
     "vim": "^0.1.0",
-    "yarn": "^1.22.4",
-    "http-proxy-middleware": "^0.19.1"
+    "webpack": "^4.44.1",
+    "yarn": "^1.22.4"
   },
   "scripts": {
     "dev": "next",
     "build": "react-scripts build",
+    "copybuild": "copyfiles --verbose -u 1 build/* ../JavaPerfMon/JavaPerfMon/frontendbuild && echo 'build files copied.'",
     "start": "react-scripts start",
     "predeploy": "npm run build",
     "test": "react-scripts test",
@@ -46,6 +49,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^3.1.0"
+    "gh-pages": "^3.1.0",
+    "graceful-fs": "^4.2.4"
   }
 }
