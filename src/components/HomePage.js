@@ -6,8 +6,14 @@ import logo from '../images/logo.PNG'
 
 class HomePage extends Component {
 
-	state = {
-		latencyCheck: []
+	constructor() {
+		super()
+		this.state = {
+			latencyCheck: [],
+			newUrl: ""
+		}
+		this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
 	}
 	
     callPeopleServices() {
@@ -65,6 +71,26 @@ class HomePage extends Component {
             })
     }
 
+	addNewUrl() {
+		const requestOptions = {
+			method: 'POST',
+			body: this.state.newUrl
+    	}
+		fetch('/api/addendpoint', requestOptions).then(response => response.json())
+	}
+	
+	handleChange(event) {
+        const {name, value} = event.target
+        this.setState({
+            [name]: value
+        }) 
+    }
+    
+    handleSubmit(event) {
+		event.preventDefault()
+		this.addNewUrl()
+    }
+
     componentDidMount() {
 		this.endpoints()
 		this.doLatencyChecks();
@@ -94,6 +120,18 @@ class HomePage extends Component {
 					</div>
 					<ServiceBlock latencyMap={latencyCheckMap} />
 				</div>
+			</Header>
+			<Header>
+				<form onSubmit={this.handleSubmit}>
+					<input 
+                        type="text"
+                        name="newUrl" 
+                        value={this.state.newUrl}
+                        onChange={this.handleChange} 
+                        placeholder="Add url to ping" 
+                    />
+                    <button>Add</button>
+				</form>
 			</Header>
 		</div>)
 	}
