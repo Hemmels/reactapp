@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import Head from 'next/head'
+import AdminPanel from './AdminPanel.js'
 import ServiceBlock from './ServiceBlock.js'
 import styled from 'styled-components'
+import {Header, Title} from './globalstyles.js'
 import logo from '../images/logo.PNG'
-import { Button, FormControl, Form, InputGroup } from 'react-bootstrap';
 
 class HomePage extends Component {
 
@@ -122,31 +123,11 @@ class HomePage extends Component {
 			</Header>
 			<br />
 			<Header>
-				<Form as={AdminPanel} onSubmit={this.handleSubmit}>
-					<Title>Admin Panel</Title>
-					<InputGroup as={MyFormGroup}>
-						<FormControl as={MyFormControl}
-	                        type="text"
-	                        name="newUrl" 
-	                        value={this.state.newUrl}
-	                        onChange={this.handleChange} 
-	                        placeholder="Add url to ping" 
-	                    />
-                    	<InputGroup.Append>
-					    	<Button as={MyFormBtn}>Add</Button>
-					    </InputGroup.Append>
-					</InputGroup>
-				</Form>
+				<AdminPanel />
 			</Header>
 		</div>)
 	}
 }
-
-const Header = styled.div`
-	line-height: 15px;
-    vertical-align: middle;
-	text-align: center;
-`
 
 const Logo = styled.img`
 	margin: 1em;
@@ -154,39 +135,11 @@ const Logo = styled.img`
     vertical-align: middle;
 `
 	
-const Title = styled.h1`
-	width: 95%;
-	display: inline-block;
-	color: cornflowerblue;
-	margin-bottom: .2rem;
-	font-family: 'Mulish';
-	font-size: 2em;
-`
-	
 const Sub = styled.h3`
 	display: inline-block;
 	color: #647eed;
 	font-family: 'Mulish';
 	margin: 0em;
-`
-
-const AdminPanel = styled.form`
-	background-color: pink;
-	margin: 1em;
-	width: 40%;
-`
-
-const MyFormGroup = styled.div`
-	margin: 1em; 
-	max-width: 95%;
-`
-
-const MyFormControl = styled.input`
-	margin: 0.5em;
-`
-
-const MyFormBtn = styled.button`
-	margin: 0.5em; 
 `
 
 export default HomePage
