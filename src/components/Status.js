@@ -8,11 +8,13 @@ class Status extends Component {
 	}
 
 	render() {
+		const AVERAGE_PING = 100
+		const HIGH_PING = 200
 		const latency = this.props.latency;
 		let statusBox;
-		if (latency < 60) {
+		if (latency < AVERAGE_PING) {
 			statusBox = <StatusBox theme={{background: "#409920"}}>{latency}ms</StatusBox>
-		} else if (latency < 120) {
+		} else if (latency < HIGH_PING) {
 			statusBox = <StatusBox theme={{background: "#999120"}}>{latency}ms</StatusBox>
 		} else {
 			statusBox = <StatusBox theme={{background: "#994020"}}>{latency}ms</StatusBox>
@@ -40,7 +42,7 @@ const StatusBox = styled.div`
 	color: white;
 	font-family: 'Mulish';
 	font-weight: 100;
-	margin-left: 1em;
+	margin-left: 2em;
 	display: flex;
 	align-items: center;
 	justify-content: center;

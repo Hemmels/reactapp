@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Status from './Status.js'
+import styled from 'styled-components'
 
 class ServiceBlock extends Component {
 
@@ -8,11 +9,16 @@ class ServiceBlock extends Component {
 			return <Status key={idx} name={name} latency={latency} />
 		})
 		return (
-			<div>
+			<BlockFormat>
 				 {keyVals}
-			</div>
+			</BlockFormat>
 		)
 	}
 }
-			
+		
+
+const BlockFormat = styled.div`
+	margin-left: 0.5em;
+`
+
 export default ServiceBlock
