@@ -1,19 +1,44 @@
 import React, {Component} from 'react'
-import styled from 'styled-components'
-import {Title} from './globalstyles.js'
+import * as Style from './globalstyles.js'
 import { Button, FormControl, Form, InputGroup } from 'react-bootstrap';
 
 class AdminPanel extends Component {
 
-	state = {
-		newUrl: ""
+	constructor() {
+		super()
+		
+		this.state = {
+			newUrl: ""
+		}
+		this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+	}
+	
+	handleChange(event) {
+        const {name, value} = event.target
+        this.setState({
+            [name]: value
+        }) 
+    }
+    
+    handleSubmit(event) {
+		event.preventDefault()
+		this.addNewUrl()
 	}
 
+	addNewUrl() {
+		const requestOptions = {
+			method: 'POST',
+			body: this.state.newUrl
+    	}
+		fetch('/api/addendpoint', requestOptions).then(response => response.json())
+	}
+	
 	render() {
-		return (<Form as={AdminPanelStyle} onSubmit={this.handleSubmit}>
-				<Title>Admin Panel</Title>
-				<InputGroup as={MyFormGroup}>
-					<FormControl as={MyFormControl}
+		return (<Form as={Style.AdminPanelStyle} onSubmit={this.handleSubmit}>
+				<Style.Title>Admin Panel</Style.Title>
+				<InputGroup as={Style.MyFormGroup}>
+					<FormControl as={Style.MyFormControl}
 						type="text"
 						name="newUrl" 
 						value={this.state.newUrl}
@@ -21,30 +46,11 @@ class AdminPanel extends Component {
 						placeholder="Add url to ping" 
 					/>
 					<InputGroup.Append>
-						<Button as={MyFormBtn}>Add</Button>
+						<Button as={Style.MyFormBtn}>Add</Button>
 					</InputGroup.Append>
 				</InputGroup>
 			</Form>)
 	}
 }
-
-const AdminPanelStyle = styled.form`
-	background-color: pink;
-	margin: 1em;
-	width: 40%;
-`
-
-const MyFormGroup = styled.div`
-	margin: 1em; 
-	max-width: 95%;
-`
-
-const MyFormControl = styled.input`
-	margin: 0.5em;
-`
-
-const MyFormBtn = styled.button`
-	margin: 0.5em; 
-`
 
 export default AdminPanel

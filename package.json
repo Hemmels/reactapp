@@ -20,7 +20,8 @@
     "styled-components": "latest",
     "styled-jsx": "^3.3.0",
     "typescript": "^3.9.7",
-    "vim": "^0.1.0"
+    "vim": "^0.1.0",
+    "msw": "^0.20.5"
   },
   "scripts": {
     "dev": "next",

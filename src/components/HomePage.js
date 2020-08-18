@@ -3,7 +3,7 @@ import Head from 'next/head'
 import AdminPanel from './AdminPanel.js'
 import ServiceBlock from './ServiceBlock.js'
 import styled from 'styled-components'
-import {Header, Title} from './globalstyles.js'
+import * as Style from './globalstyles.js'
 import logo from '../images/logo.PNG'
 
 class HomePage extends Component {
@@ -14,8 +14,6 @@ class HomePage extends Component {
 			latencyCheck: [],
 			newUrl: ""
 		}
-		this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
 	}
 	
     callPeopleServices() {
@@ -71,26 +69,6 @@ class HomePage extends Component {
             })
     }
 
-	addNewUrl() {
-		const requestOptions = {
-			method: 'POST',
-			body: this.state.newUrl
-    	}
-		fetch('/api/addendpoint', requestOptions).then(response => response.json())
-	}
-	
-	handleChange(event) {
-        const {name, value} = event.target
-        this.setState({
-            [name]: value
-        }) 
-    }
-    
-    handleSubmit(event) {
-		event.preventDefault()
-		this.addNewUrl()
-    }
-
     componentDidMount() {
 		this.endpoints()
 		this.doLatencyChecks();
@@ -113,7 +91,7 @@ class HomePage extends Component {
 			</Head>
 			<Header>
 				<div>
-					<Logo src={logo} alt="Logo"></Logo>
+					<Style.Logo src={logo} alt="Logo"></Style.Logo>
 					<div>
 						<Title>Service Status Dash</Title>
 						<Sub>Page refreshes every 5s {listLength > 0 ? '; There are ' + listLength + ' endpoints' : ''}</Sub>
@@ -128,18 +106,5 @@ class HomePage extends Component {
 		</div>)
 	}
 }
-
-const Logo = styled.img`
-	margin: 1em;
-	max-width: 4em;
-    vertical-align: middle;
-`
-	
-const Sub = styled.h3`
-	display: inline-block;
-	color: #647eed;
-	font-family: 'Mulish';
-	margin: 0em;
-`
 
 export default HomePage
