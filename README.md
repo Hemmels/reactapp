@@ -27,6 +27,11 @@ And navigate to localhost:3000/reactapp to view the project.
 ## How does it do it?
 We could have used pure React, but this is now a nice "workbench" for showing Java-backend to React-frontend capabilities. We make a call every 5s to our Java app and this @RestController handles the call. We query our datasource to get a list of enabled sites, pings them, and returns the data for the frontend to render. Having a backing db also means we can keep track of events such as downtimes or admin logs.
 
+## Features
+* A nicely seperated functional component structure
+* Testing of functional components with React testing library usage
+* Styling with both [react bootsrap](https://react-bootstrap.github.io/) and [styled-components](https://styled-components.com/).
+
 ## Issues/Improvements
 **Currently doesn't show anything on Github Pages!!** while I find a nice way of deploying the frontend code as part of 1 "release". For now, as long as Springboot is running the backend, and the frontend React project is also running, it'll play nice locally. (i.e. you have 2 separate projects running)
 
