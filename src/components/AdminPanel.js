@@ -78,7 +78,8 @@ class AdminPanel extends Component {
 		</Form.Label>
 
 		return (<Form as={Style.AdminPanelStyle} onSubmit={this.handleSubmit}>
-				<Style.Title>Admin Panel</Style.Title>
+				{/* TitleBlock Adds to the global Title style */}
+				<Style.Title as={TitleBlock}>Admin Panel</Style.Title>
 				<InputGroup as={Style.MyFormGroup}>
 					{PingLabel}
 					<Button as={Style.MyFormBtn} type="button" onClick={() => {this.togglePinging(); this.props.pingHandler()}}>Toggle</Button>
@@ -111,6 +112,10 @@ export const AdminLabel = styled.label`
 	width: 40%;
 	line-height: 2em;
 	text-align: left;
+`
+
+export const TitleBlock = styled.label`
+	margin-bottom: -0.5em;
 `
 
 export default AdminPanel

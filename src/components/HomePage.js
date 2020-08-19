@@ -24,33 +24,6 @@ class HomePage extends Component {
 		}), this.initPings)
 	}
 	
-    callPeopleServices() {
-        fetch('https://swapi.dev/api/people/?format=json')
-            .then(results => {
-                if (!results.ok) {
-                	console.log("Failed getting swapi data: " + results.statusText)
-                }
-                return results.json();
-            }).then(data => {
-                console.log("SWAPI data fetched; there are " + data.results.length)
-                this.setState({ numSWPeople: data.results.length })
-            }).catch(error => {
-                console.log(error)
-            });
-        fetch('https://ghibliapi.herokuapp.com/people/?format=json')
-            .then(results => {
-                if (!results.ok) {
-                	console.log("Failed getting Ghibli data: " + results.statusText)
-                }
-                return results.json();
-            }).then(data => {
-                console.log("Ghibli data fetched; there are " + data.length)
-                this.setState({ numGhibPeople: data.length })
-            }).catch(error => {
-                console.log(error)
-            })
-	}
-	
 	endpoints = () => {
         fetch('/api/endpointNames')
     		.then(results => {
@@ -74,7 +47,6 @@ class HomePage extends Component {
 					this.setState((prevState) => {
 						return {latencyCheck: prevState.latencyCheck, pinging: false, newUrl: prevState.newUrl};
 					})
-                	console.log("Pings stopped; state's pinging is: " + this.state.pinging)
 					this.adminPanelRef.current.togglePinging()
                 }
 				return results.json()
@@ -92,7 +64,6 @@ class HomePage extends Component {
 
 	componentWillUnmount() {
   		clearInterval(this.interval)
-		console.log("Page interval cleared")
 	}
 
 	shouldComponentUpdate(nextProps) {
@@ -101,12 +72,10 @@ class HomePage extends Component {
 	
 	initPings() {
 		if (this.state.pinging) {
-			console.log("Restarted 5s pings")
 			this.interval = setInterval(() => this.doLatencyChecks(), 5000)
 		}
 		else {
   			clearInterval(this.interval)
-			console.log("Pings manually turned off")
 		}
 	}
 	

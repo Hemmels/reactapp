@@ -10,6 +10,7 @@ export const Title = styled.h1`
 	width: 95%;
 	display: inline-block;
 	color: cornflowerblue;
+	margin-top: 0.5em;
 	margin-bottom: .2rem;
 	font-family: 'Mulish';
 	font-size: 2em;
@@ -19,6 +20,7 @@ export const Title = styled.h1`
 // Homepage styles
 export const Logo = styled.img`
 	margin: 1em;
+	margin-bottom: 0;
 	max-width: 4em;
     vertical-align: middle;
 `
@@ -46,7 +48,7 @@ export const MyFormGroup = styled.div`
 export const AdminLabel = styled.label`
 	color: #647eed;
 	vertical-align: middle;
-	width: 40%;
+	width: 80%;
 	text-align: left;
 	font-weight: 500;
 	margin-bottom: 0;
@@ -55,10 +57,12 @@ export const AdminLabel = styled.label`
 `
 
 export const MyFormControl = styled.input`
-	max-width: 120px;
+	min-width: 120px;
+	max-width: 444px;
+	width: 120px;
 `
 
 export const MyFormBtn = styled.button`
-	min-width: 80px;
+	max-width: 80px;
 	width: 15%;
 `
