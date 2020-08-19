@@ -40,7 +40,7 @@ const StatusBox = styled.div`
 	border-style: groove;
 	border-width: 2px;
 	height: 2em;
-	width: 20em;
+	width: 17em;
 	background-color: ${props => props.theme.background};
     vertical-align: middle;
 	text-align: center;
