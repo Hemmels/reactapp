@@ -35,7 +35,7 @@ export const Sub = styled.h3`
 // Panel styles
 export const AdminPanelStyle = styled.form`
 	background-color: pink;
-	width: 40%;
+	width: 36%;
 	border-width:5px;  
 	border-style:groove;
 	margin: 0 auto;
@@ -43,12 +43,13 @@ export const AdminPanelStyle = styled.form`
 
 export const MyFormGroup = styled.div`
 	margin: 1em; 
-	max-width: 95%;
+	width: auto;
 `
 export const AdminLabel = styled.label`
 	color: #647eed;
 	vertical-align: middle;
-	width: 80%;
+	min-width: 40%;
+	width: 70%;
 	text-align: left;
 	font-weight: 500;
 	margin-bottom: 0;
@@ -57,12 +58,14 @@ export const AdminLabel = styled.label`
 `
 
 export const MyFormControl = styled.input`
+	box-sizing : border-box;
 	min-width: 120px;
 	max-width: 444px;
-	width: 120px;
+	width: 85%;
 `
 
 export const MyFormBtn = styled.button`
-	max-width: 80px;
+	box-sizing : border-box;
+	min-width: 80px;
 	width: 15%;
 `

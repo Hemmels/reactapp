@@ -1,22 +1,21 @@
 import React, {Component} from 'react'
 import {Container, Row, Col} from 'react-bootstrap'
 import Status from './Status.js'
-import styled from 'styled-components'
 
 class ServiceBlock extends Component {
 
 	render() {
 		var keyVals1 = Object.entries(this.props.latencyMap).map(([name, latency], idx) => {
-			return idx % 4 === 0 ? <Status key={idx} name={name} latency={latency} /> : null
+			return idx % 4 === 0 ? <Status key={idx} service={name} latency={latency} /> : null
 		})
 		var keyVals2 = Object.entries(this.props.latencyMap).map(([name, latency], idx) => {
-			return idx % 4 === 1 ? <Status key={idx} name={name} latency={latency} /> : null
+			return idx % 4 === 1 ? <Status key={idx} service={name} latency={latency} /> : null
 		})
 		var keyVals3 = Object.entries(this.props.latencyMap).map(([name, latency], idx) => {
-			return idx % 4 === 2 ? <Status key={idx} name={name} latency={latency} /> : null
+			return idx % 4 === 2 ? <Status key={idx} service={name} latency={latency} /> : null
 		})
 		var keyVals4 = Object.entries(this.props.latencyMap).map(([name, latency], idx) => {
-			return idx % 4 === 3 ? <Status key={idx} name={name} latency={latency} /> : null
+			return idx % 4 === 3 ? <Status key={idx} service={name} latency={latency} /> : null
 		})
 		return (
 			<Container fluid>

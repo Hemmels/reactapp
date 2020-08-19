@@ -32,18 +32,24 @@ class AdminPanel extends Component {
 	addNewUrl() {
 		const requestOptions = {
 			method: 'POST',
+			headers: {
+				'Content-Type': 'text/plain'
+			},
 			body: this.state.newUrl
     	}
-		fetch('/api/endpoint/add', requestOptions).then(response => response.json())
+		fetch('/api/endpoint/add', requestOptions).then(response => response)
 	}
 
 	enableAll() {
 		const isAllEnabled = this.state.allEnabled
 		const requestOptions = {
 			method: 'POST',
-			body: isAllEnabled
+			headers: {
+				'Content-Type': 'text/plain'
+			},
+			body: !isAllEnabled
     	}
-		fetch('/api/endpoint/enableall', requestOptions).then(response => response.json())
+		fetch('/api/endpoint/enableall', requestOptions).then(response => response)
 		this.setState({
 			newUrl: this.state.newUrl,
 			allEnabled: !isAllEnabled,
@@ -62,6 +68,7 @@ class AdminPanel extends Component {
 	render() {
 		var PingLabel
 		if (this.state.pinging) {
+			/* TitleBlock Adds to the global Title style */
 			PingLabel = <Form.Label as={Style.AdminLabel} style={{color: "lightseagreen"}}>
 				Pinging
 			</Form.Label>
@@ -74,7 +81,7 @@ class AdminPanel extends Component {
 
 		
 		var EnableLabel = <Form.Label as={Style.AdminLabel}>
-				{this.state.allEnabled ? 'Disable all' : 'Enable all'}
+			{this.state.allEnabled ? 'Disable all' : 'Enable all'}
 		</Form.Label>
 
 		return (<Form as={Style.AdminPanelStyle} onSubmit={this.handleSubmit}>
@@ -85,6 +92,12 @@ class AdminPanel extends Component {
 					<Button as={Style.MyFormBtn} type="button" onClick={() => {this.togglePinging(); this.props.pingHandler()}}>Toggle</Button>
 				</InputGroup>
 				<InputGroup as={Style.MyFormGroup}>
+					<Form.Label as={Style.AdminLabel}>
+						{EnableLabel}
+					</Form.Label>
+					<Button as={Style.MyFormBtn} type="button" onClick={() => this.enableAll()}>Go</Button>
+				</InputGroup>
+				<InputGroup as={Style.MyFormGroup}>
 					<FormControl as={Style.MyFormControl}
 						type="text"
 						name="newUrl" 
@@ -93,26 +106,12 @@ class AdminPanel extends Component {
 						placeholder="Add url to ping" 
 					/>
 					<InputGroup.Append>
-						<Button>Add</Button>
+						<Button type="submit">Add</Button>
 					</InputGroup.Append>
-				</InputGroup>
-				<InputGroup as={Style.MyFormGroup}>
-					<Form.Label as={Style.AdminLabel}>
-						{EnableLabel}
-					</Form.Label>
-					<Button as={Style.MyFormBtn} type="button" onClick={() => this.enableAll()}>Go</Button>
 				</InputGroup>
 			</Form>)
 	}
 }
-
-export const AdminLabel = styled.label`
-	color: #647eed;
-	vertical-align: middle;
-	width: 40%;
-	line-height: 2em;
-	text-align: left;
-`
 
 export const TitleBlock = styled.label`
 	margin-bottom: -0.5em;
