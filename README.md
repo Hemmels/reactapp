@@ -34,7 +34,10 @@ We could have used pure React, but this is now a nice "workbench" for showing Ja
 
 ## Issues/Improvements
 **Currently doesn't show anything on Github Pages!!** while I find a nice way of deploying the frontend code as part of 1 "release". For now, as long as Springboot is running the backend, and the frontend React project is also running, it'll play nice locally. (i.e. you have 2 separate projects running)
+There are some minor usability bugs; notably around the screen not blocking on user interraction. It should unblock once the new latencies have returned.
 
 **Future recommendations?** To improve, we could add a form and a user login that would show "advanced features" like editing the services that are shown, or enabling/disabling or filtering. Right now, to add a service/site to be monitored, we make a simple Post request to endpoints/add with the string.
 
 I had intended to look into email functionality whenever a site "goes red" for more than 3 counts but this would require hosting, or a bulk of code to setup the connectivity in Javascript.
+
+I like the idea of a "history" button that would popup a modal with a nice graph of recorded pings and/or downtimes.
